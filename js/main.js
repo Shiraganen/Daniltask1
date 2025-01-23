@@ -1,11 +1,10 @@
 const form = document.querySelector('#form');
-const taskinput = document.querySelector('#taskinput');
+const taskInput = document.querySelector('#taskInput');
 
 
 form.addEventListener('submit', function (event) {
     event.preventDefault();
 
-
-    const taskText = taskinput.value
+    const taskText = taskInput.value
 
 })

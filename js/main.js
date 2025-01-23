@@ -5,4 +5,7 @@ const taskinput = document.querySelector('#taskinput');
 form.addEventListener('submit', function (event) {
     event.preventDefault();
 
+
+    const taskText = taskinput.value
+
 })

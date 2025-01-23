@@ -1,6 +1,6 @@
 const form = document.querySelector('#form');
 const taskInput = document.querySelector('#taskInput');
-
+const tasksList = document.querySelector('#tasksList');
 
 form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -19,5 +19,7 @@ form.addEventListener('submit', function (event) {
 						</button>
 					</div>
 				</li>`
+    
 
+    tasksList.insertAdjacentHTML('beforeend', taskHTML)
 })

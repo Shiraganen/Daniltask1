@@ -9,6 +9,9 @@ form.addEventListener('submit', addTask)
 tasksList.addEventListener('click', deleteTask)
 
 
+tasksList.addEventListener('click', doneTask)
+
+
 function addTask(event) {
 	event.preventDefault();
 
@@ -49,4 +52,12 @@ function deleteTask(event) {
 
 }	
 
+}
+
+function doneTask(event) {
+	if(event.target.dataset.action === 'done') {
+		const parenNode = event.target.closest('.list-group-item');
+		const taskTitle = parenNode.querySelector('.task-title');
+		taskTitle.classList.add('task-title--done')
+	}
 }

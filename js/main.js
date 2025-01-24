@@ -5,6 +5,10 @@ const emptyList = document.querySelector('#emptyList');
 
 form.addEventListener('submit', addTask)
 
+
+tasksList.addEventListener('click', deleteTask)
+
+
 function addTask(event) {
 	event.preventDefault();
 
@@ -34,3 +38,15 @@ function addTask(event) {
 	}
 }
 
+function deleteTask(event) {
+	if(event.target.dataset.action === 'delete') {
+		const parenNode = event.target.closest('li');
+		parenNode.remove()
+
+	if(tasksList.children.length === 1) {
+		emptyList.classList.remove('none')
+	}
+
+}	
+
+}

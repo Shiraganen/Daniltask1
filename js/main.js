@@ -3,8 +3,10 @@ const taskInput = document.querySelector('#taskInput');
 const tasksList = document.querySelector('#tasksList');
 
 
-form.addEventListener('submit', function (event) {
-    event.preventDefault();
+form.addEventListener('submit', addTask)
+
+function addTask(event) {
+	event.preventDefault();
 
     const taskText = taskInput.value
 
@@ -30,4 +32,4 @@ form.addEventListener('submit', function (event) {
 	 if(tasksList.children.length > 1) {
 		emptyList.classList.add('none')
 	}
-})
+}

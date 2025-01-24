@@ -1,7 +1,7 @@
 const form = document.querySelector('#form');
 const taskInput = document.querySelector('#taskInput');
 const tasksList = document.querySelector('#tasksList');
-
+const emptyList = document.querySelector('#emptyList');
 
 form.addEventListener('submit', addTask)
 
@@ -33,3 +33,4 @@ function addTask(event) {
 		emptyList.classList.add('none')
 	}
 }
+

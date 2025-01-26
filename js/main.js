@@ -3,6 +3,13 @@ const taskInput = document.querySelector('#taskInput');
 const tasksList = document.querySelector('#tasksList');
 const emptyList = document.querySelector('#emptyList');
 
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+if (tasks.length > 0) {
+	tasks.map((task) => renderTask(task));
+	toggleEmptyList();
+}
+
+
 form.addEventListener('submit', addTask)
 
 
@@ -15,49 +22,91 @@ tasksList.addEventListener('click', doneTask)
 function addTask(event) {
 	event.preventDefault();
 
-    const taskText = taskInput.value
+	const taskText = taskInput.value.trim();
 
-    const taskHTML = 
-                `<li class="list-group-item d-flex justify-content-between task-item">
-					<span class="task-title">${taskText}</span>
-					<div class="task-item__buttons">
-						<button type="button" data-action="done" class="btn-action">
-							<img src="./img/tick.svg" alt="Done" width="18" height="18">
-						</button>
-						<button type="button" data-action="delete" class="btn-action">
-							<img src="./img/cross.svg" alt="Done" width="18" height="18">
-						</button>
-					</div>
-				</li>`
-    
+	const newTask = {
+		id: Date.now(),
+		text: taskText,
+		done: false,
+	};
 
-    tasksList.insertAdjacentHTML('beforeend', taskHTML)
+	tasks.push(newTask);
 
-    taskInput.value = ""
-    taskInput.focus()
+	localStorage.setItem('tasks', JSON.stringify(tasks));
 
-	 if(tasksList.children.length > 1) {
-		emptyList.classList.add('none')
-	}
+	renderTask(newTask);
+	
+	taskInput.value = '';
+
+	taskInput.focus();
+
+	toggleEmptyList();
+
 }
 
 function deleteTask(event) {
 	if(event.target.dataset.action === 'delete') {
 		const parenNode = event.target.closest('li');
+
+		const id = Number(parenNode.id)
+
+		const index = tasks.findIndex((task) => task.id === id)
+			
+		tasks.splice(index, 1)
+
+		localStorage.setItem('tasks', JSON.stringify(tasks));
+
 		parenNode.remove()
 
-	if(tasksList.children.length === 1) {
-		emptyList.classList.remove('none')
-	}
+		
 
-}	
+	}	
+
+toggleEmptyList();
 
 }
 
 function doneTask(event) {
-	if(event.target.dataset.action === 'done') {
-		const parenNode = event.target.closest('.list-group-item');
-		const taskTitle = parenNode.querySelector('.task-title');
-		taskTitle.classList.add('task-title--done')
+	if (event.target.dataset.action !== 'done') return
+
+	const parentNode = event.target.closest('.list-group-item');
+
+	const id = Number(parentNode.id)
+
+	const task = tasks.find(task => task.id === id);
+
+	task.done = !task.done
+
+	localStorage.setItem('tasks', JSON.stringify(tasks));
+
+	const taskTitle = parentNode.querySelector('.task-title');
+	taskTitle.classList.toggle('task-title--done');
+}
+
+function renderTask(task) {
+	const cssClass = task.done ? 'task-title task-title--done' : 'task-title';
+
+	const taskHTML = `
+		<li id="${task.id}" class="list-group-item d-flex justify-content-between task-item">
+			<span class="${cssClass}">${task.text}</span>
+			<div class="task-item__buttons">
+				<button type="button" data-action="done" class="btn-action">
+					<img src="./img/tick.svg" alt="Done" width="18" height="18">
+				</button>
+				<button type="button" data-action="delete" class="btn-action">
+					<img src="./img/cross.svg" alt="Done" width="18" height="18">
+				</button>
+			</div>
+		</li>
+	`;
+
+	tasksList.insertAdjacentHTML('beforeend', taskHTML);
+}
+
+function toggleEmptyList() {
+	if (tasksList.children.length > 1) {
+		emptyList.classList.add('none');
+	} else {
+		emptyList.classList.remove('none');
 	}
 }

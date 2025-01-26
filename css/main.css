@@ -1,59 +1,65 @@
 html, body {
-  min-height: 100vh;
+    min-height: 100vh;
+}
+body {
+    background-color: #E4E5E7;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-body {
-  background-color: #E4E5E7;
-  padding-top: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 .aside {
-  height: 400px;
+    height: 400px;
 }
 .main {
-  height: 400px;
+    height: 400px;
+}
+
+.gray {
+    color: #BDBDBD;
 }
 .d-flex {
-  display: flex;
+    display: flex;
 }
+.none {
+  display: none !important;
+}
+.float-right {
+  float: right;
+}
+
 .task-title {
-  font-weight: 400;
-  padding-top: 5px;
-}
-.gray {
-  color: #BDBDBD;
+    font-weight: 400;
+    padding-top: 5px;
 }
 .task-title--done {
-  text-decoration: line-through;
-  color: #CDCDCD;
+    text-decoration: line-through;
+    color: #CDCDCD;
 }
 .task-item__buttons {
-  display: flex;
-  column-gap: 5px;
+    display: flex;
+    column-gap: 5px;
 }
-.notify-holder {
-  height: 60px;
-  margin-bottom: 20px;
-}
+
 .empty-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 1em;
-  padding-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 .empty-list__title {
-  font-size: 28px;
-  margin-bottom: 15px;
-  font-weight: 300;
+    font-size: 28px;
+    margin-bottom: 15px;
+    font-weight: 300;
 }
 .empty-list__icon {
-  color: #42BE2A;
-  font-size: 32px;
+    color: #42BE2A;
+    font-size: 32px;
 }
+
 .btn-action {
     background-color: #e0e5ea;
     padding: 8px 10px;
@@ -62,36 +68,14 @@ body {
     border-radius: 4px;
     transition: opacity 0.2s ease-in;
     opacity: 0.5;
-
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .btn-action:hover {
     background-color: #e0e5ea;
     opacity: 1;
 }
-
 .btn-action img {
-  pointer-events: none;
-}
-
-.none {
-  display: none !important;
-}
-
-.float-right {
-  float: right;
-}
-.copyright {
-  margin-top: 40px;
-  font-size: 14px;
-  color: gray;
-  text-align: center;
-  margin-bottom: 30px;
-  /* position: absolute; */
-  /* bottom: 30px; */
-  /* left: 0; */
-  /* right: 0; */
+    pointer-events: none;
 }
